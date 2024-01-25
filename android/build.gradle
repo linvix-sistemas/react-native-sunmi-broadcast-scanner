@@ -37,6 +37,10 @@ def supportsNamespace() {
 }
 
 android {
+  buildFeatures {
+    aidl true
+  }
+
   if (supportsNamespace()) {
     namespace "com.linvixsistemas.reactnativesunmibroadcastscanner"
 
