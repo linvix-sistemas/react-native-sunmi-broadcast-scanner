@@ -12,7 +12,7 @@ npm install @linvix-sistemas/react-native-sunmi-broadcast-scanner
 yarn add @linvix-sistemas/react-native-sunmi-broadcast-scanner
 ```
 
-### Usage
+### Usage - onBarcodeRead
 > See the [example](example/src/App.tsx) folder to see how to use it.
 
 This method is a "listener", that is, it waits for the event to occur, and triggers the callback function when the event happens.
@@ -35,7 +35,45 @@ useEffect(() => {
 
     return () => cleanup.remove();
 }, []);
-  ```
+```
+
+### Usage - Utils
+Utility functions that are used to obtain some data and perform some functions.
+
+```ts
+import ReactNativeSunmiBroadcastScanner from '@linvix-sistemas/react-native-sunmi-broadcast-scanner';
+
+
+/**
+ * Get model of device
+ */
+const model = await ReactNativeSunmiBroadcastScanner.utils.getModel();
+
+/**
+ * Get brand of device
+ */
+const brand = await ReactNativeSunmiBroadcastScanner.utils.getBrand();
+
+/**
+ * Get serial number of device
+ */
+const serialNumber = await ReactNativeSunmiBroadcastScanner.utils.getSerialNumber();
+
+/**
+ * Get version code of device
+ */
+const versionCode = await ReactNativeSunmiBroadcastScanner.utils.getVersionCode();
+
+/**
+ * Get version name of device
+ */
+const versionName = await ReactNativeSunmiBroadcastScanner.utils.getVersionName();
+
+/**
+ * Reboot device
+ */
+const response = await ReactNativeSunmiBroadcastScanner.utils.rebootDevice(reason: string);
+```
 
 ## Contributing
 

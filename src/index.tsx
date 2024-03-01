@@ -23,8 +23,43 @@ const onBarcodeRead = (callback: (ev: ScannerEvent) => void) => {
   return DeviceEventEmitter.addListener('BROADCAST_SCANNER_READ', callback);
 };
 
+const getBrand = async (): Promise<string | null> => {
+  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetBrand();
+};
+
+const getSerialNumber = async (): Promise<string | null> => {
+  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetSerialNumber();
+};
+
+const getModel = async (): Promise<string | null> => {
+  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetModel();
+};
+
+const getVersionCode = async (): Promise<string | null> => {
+  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetVersionCode();
+};
+
+const getVersionName = async (): Promise<string | null> => {
+  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetVersionName();
+};
+
+const rebootDevice = async (reason: string): Promise<boolean> => {
+  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsRebootDevice(
+    reason
+  );
+};
+
 const ReactNativeSunmiBroadcastScanner = {
   onBarcodeRead,
+
+  utils: {
+    getModel,
+    getBrand,
+    getSerialNumber,
+    getVersionCode,
+    getVersionName,
+    rebootDevice,
+  },
 };
 
 export default ReactNativeSunmiBroadcastScanner;
