@@ -8,7 +8,7 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo Go\n';
 
-if (!NativeModules.ReactNativeSunmiBroadcastScanner) {
+if (!NativeModules.RNSunmiBroadcastScanner) {
   new Proxy(
     {},
     {
@@ -19,34 +19,34 @@ if (!NativeModules.ReactNativeSunmiBroadcastScanner) {
   );
 }
 
+const { RNSunmiBroadcastScanner } = NativeModules;
+
 const onBarcodeRead = (callback: (ev: ScannerEvent) => void) => {
   return DeviceEventEmitter.addListener('BROADCAST_SCANNER_READ', callback);
 };
 
 const getBrand = async (): Promise<string | null> => {
-  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetBrand();
+  return await RNSunmiBroadcastScanner.utilsGetBrand();
 };
 
 const getSerialNumber = async (): Promise<string | null> => {
-  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetSerialNumber();
+  return await RNSunmiBroadcastScanner.utilsGetSerialNumber();
 };
 
 const getModel = async (): Promise<string | null> => {
-  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetModel();
+  return await RNSunmiBroadcastScanner.utilsGetModel();
 };
 
 const getVersionCode = async (): Promise<string | null> => {
-  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetVersionCode();
+  return await RNSunmiBroadcastScanner.utilsGetVersionCode();
 };
 
 const getVersionName = async (): Promise<string | null> => {
-  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsGetVersionName();
+  return await RNSunmiBroadcastScanner.utilsGetVersionName();
 };
 
 const rebootDevice = async (reason: string): Promise<boolean> => {
-  return await NativeModules.ReactNativeSunmiBroadcastScanner.utilsRebootDevice(
-    reason
-  );
+  return await RNSunmiBroadcastScanner.utilsRebootDevice(reason);
 };
 
 const ReactNativeSunmiBroadcastScanner = {

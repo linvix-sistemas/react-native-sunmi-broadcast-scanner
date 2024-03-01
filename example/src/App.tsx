@@ -7,7 +7,49 @@ import ReactNativeSunmiBroadcastScanner from '@linvix-sistemas/react-native-sunm
 export default function App() {
   const [result, setResult] = React.useState<string>('');
 
+  const loadDeviceData = async () => {
+    try {
+      /**
+       * Get model of device
+       */
+      const model = await ReactNativeSunmiBroadcastScanner.utils.getModel();
+
+      /**
+       * Get brand of device
+       */
+      const brand = await ReactNativeSunmiBroadcastScanner.utils.getBrand();
+
+      /**
+       * Get serial number of device
+       */
+      const serialNumber =
+        await ReactNativeSunmiBroadcastScanner.utils.getSerialNumber();
+
+      /**
+       * Get version code of device
+       */
+      const versionCode =
+        await ReactNativeSunmiBroadcastScanner.utils.getVersionCode();
+
+      /**
+       * Get version name of device
+       */
+      const versionName =
+        await ReactNativeSunmiBroadcastScanner.utils.getVersionName();
+
+      console.log('model', model);
+      console.log('brand', brand);
+      console.log('serialNumber', serialNumber);
+      console.log('versionCode', versionCode);
+      console.log('versionName', versionName);
+    } catch (error: Error | any) {
+      console.error(error.message);
+    }
+  };
+
   React.useEffect(() => {
+    loadDeviceData();
+
     /**
      * On devices that have a barcode reader or support via external USB scanners.
      * For code reading to work, you need to configure the device to broadcast data and disable TextInput for text output.
