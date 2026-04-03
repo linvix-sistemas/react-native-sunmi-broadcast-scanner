@@ -220,7 +220,14 @@ public class ReactNativeSunmiBroadcastScannerModule extends ReactContextBaseJava
   private void RegisterReceiver() {
     IntentFilter filter = new IntentFilter();
     filter.addAction(ACTION_DATA_CODE_RECEIVED);
-    reactContext.registerReceiver(receiver, filter);
+
+    // Android 13+ requires explicit receiver export state for context-registered receivers.
+    // Sunmi scanner broadcasts are sent from an external process, so RECEIVER_EXPORTED is required.
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+      reactContext.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+    } else {
+      reactContext.registerReceiver(receiver, filter);
+    }
   }
 
   @Override
